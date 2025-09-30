@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Heart, Moon, Music, Palette, Gamepad2, BookOpen, Target, Users, Shield, Play, Star, Plus, CreditCard as Edit, Trash2, Save, X, Search, Filter, Eye, CheckCircle, XCircle } from 'lucide-react';
+import { Brain, Heart, Moon, Music, Palette, Gamepad2, BookOpen, Target, Users, Shield, Play, Star, Plus, CreditCard as Edit, Trash2, Save, X, Search, Filter, Eye, CheckCircle, XCircle, Settings } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { Therapy, TherapyFormData } from '../types/therapy';
 import {
@@ -50,6 +51,7 @@ const categoryOptions = [
 ];
 
 function AdminTherapyManagement() {
+  const navigate = useNavigate();
   const [therapies, setTherapies] = useState<Therapy[]>([]);
   const [filteredTherapies, setFilteredTherapies] = useState<Therapy[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -356,6 +358,15 @@ function AdminTherapyManagement() {
                         <IconComponent className="w-7 h-7 text-white" />
                       </div>
                       <div className="flex space-x-2">
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => navigate(`/admin/therapy-content/${therapy.id}`)}
+                          className="p-2 text-teal-400 hover:bg-teal-400 hover:bg-opacity-10 rounded-lg transition-colors"
+                          title="Edit Content"
+                        >
+                          <Settings className="w-5 h-5" />
+                        </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}

@@ -28,6 +28,7 @@ import ListServicePage from './pages/ListServicePage';
 
 // Admin Therapy Management
 import AdminTherapyManagement from './pages/AdminTherapyManagement';
+import AdminTherapyContentEditor from './pages/AdminTherapyContentEditor';
 
 // Therapy Module Components
 import MindfulnessModule from './pages/modules/MindfulnessModule';
@@ -175,7 +176,11 @@ function App() {
           <Route path="/admin/therapy-management" element={
             user?.role === 'admin' ? <AdminTherapyManagement /> : <Navigate to="/dashboard" />
           } />
-          
+
+          <Route path="/admin/therapy-content/:id" element={
+            user?.role === 'admin' ? <AdminTherapyContentEditor /> : <Navigate to="/dashboard" />
+          } />
+
           {/* Video Session Route */}
           <Route path="/video-session/:sessionId" element={
             user ? <VideoSessionPage /> : <Navigate to="/login" />
